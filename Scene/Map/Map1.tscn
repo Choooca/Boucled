@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Background.png" type="Texture" id=1]
+[ext_resource path="res://Scene/Script/Map1.gd" type="Script" id=2]
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( 865, 513.5 )
+b = Vector2( 105, 513.5 )
+
+[node name="Map1" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( -1, 290 )
+scale = Vector2( 0.08, 1 )
+mode = 1
+gravity_scale = 0.0
+sleeping = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( -105, -512 )
+shape = SubResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="RigidBody2D/CollisionShape2D"]
+position = Vector2( 0, -11 )
+points = PoolVector2Array( 105, 528, 865, 528 )
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="Spawn" type="Position2D" parent="."]
+position = Vector2( 13, 261 )
+
+[node name="Finish" type="RigidBody2D" parent="."]
+position = Vector2( 964, 298 )
+scale = Vector2( 0.08, 1 )
+mode = 1
+gravity_scale = 0.0
+sleeping = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Finish"]
+position = Vector2( -105, -512 )
+shape = SubResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="Finish/CollisionShape2D"]
+position = Vector2( 0, -11 )
+points = PoolVector2Array( 105, 528, 865, 528 )
+default_color = Color( 0, 0, 0, 1 )
